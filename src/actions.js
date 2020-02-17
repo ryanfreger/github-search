@@ -18,15 +18,6 @@ export const setLanguageField = (text) => ({
     payload: text
 });
 
-// export const requestTrendingProjects = () => (dispatch) => {
-//     let todayDate = new Date().toISOString().slice(0,10);
-//     dispatch({type: REQUEST_PROJECTS_PENDING})
-//     fetch(`https://api.github.com/search/repositories?q=created:${todayDate}+sort:stars&order=desc`)
-//     .then(response => response.json())
-//     .then((data) => dispatch( {type: REQUEST_PROJECTS_SUCCESS, payload: data} ))
-//     .catch((error) => {dispatch( {type: REQUEST_PROJECTS_FAILED, payload: error} )})
-// }
-
 export const requestTrendingProjects = () => (dispatch) => {
     let todayDate = new Date().toISOString().slice(0,10);
     dispatch({type: REQUEST_PROJECTS_PENDING})
@@ -38,7 +29,6 @@ export const requestTrendingProjects = () => (dispatch) => {
 
 export const requestSearchedProjects = () => (dispatch, getState) => {
     const state = getState();
-    console.log(state);
     dispatch({type: REQUEST_PROJECTS_PENDING})
     fetch(`https://api.github.com/search/repositories?q=${state.projectSearchField.project}+language:${state.languageSearchField.language}&page=${state.requestProjects.page}&per_page=30`)
     .then(response => response.json())
@@ -48,7 +38,6 @@ export const requestSearchedProjects = () => (dispatch, getState) => {
 
 export const nextPageProjects = () => (dispatch, getState) => {
     const state = getState();
-    console.log(state);
     dispatch({type: REQUEST_PROJECTS_PENDING})
     fetch(`https://api.github.com/search/repositories?q=${state.projectSearchField.project}+language:${state.languageSearchField.language}&page=${state.requestProjects.page + 1}&per_page=30`)
     .then(response => response.json())
@@ -58,7 +47,6 @@ export const nextPageProjects = () => (dispatch, getState) => {
 
 export const prevPageProjects = () => (dispatch, getState) => {
     const state = getState();
-    console.log(state);
     dispatch({type: REQUEST_PROJECTS_PENDING})
     fetch(`https://api.github.com/search/repositories?q=${state.projectSearchField.project}+language:${state.languageSearchField.language}&page=${state.requestProjects.page - 1}&per_page=30`)
     .then(response => response.json())

@@ -8,6 +8,7 @@ import ResultCount from '../components/ResultCount';
 import Scroll from '../components/Scroll';
 import { setProjectField, setLanguageField, requestTrendingProjects, requestSearchedProjects, prevPageProjects, nextPageProjects } from '../actions';
 import { connect } from 'react-redux';
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 //mapping state from Redux store to props to be passed down from this container component
 const mapStateToProps = (state) => {
@@ -63,8 +64,8 @@ class App extends React.Component {
           </Scroll>
           {/*/ div for buttons. if page > 1 show back button. if more than 30 results, show next button */}
           <div className='tc pt3'>
-            {projects !== undefined && page > 1 ? <button className='no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4' onClick={onPrevPageProjects}>Back</button> : null}
-            {projects !== undefined && projects.total_count > 30 ? <button className='no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4' onClick={onNextPageProjects}>Next</button> : null}
+            {projects !== undefined && page > 1 ? <button className='no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4' onClick={onPrevPageProjects}><FiArrowLeft /></button> : null}
+            {projects !== undefined && projects.total_count > 30 ? <button className='no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4' onClick={onNextPageProjects}><FiArrowRight /></button> : null}
           </div>
 
         </div>
